@@ -1,0 +1,28 @@
+{
+  "games": [
+    {
+      "id": "game-1766253828216",
+      "code": "OUKXGL",
+      "name": "Amis invisibles",
+      "creator": "emm.foka@gmail.com",
+      "createdAt": "2025-12-20T18:03:48.217Z",
+      "participants": [],
+      "draws": {},
+      "drawPerformedAt": null,
+      "budget": 150000,
+      "currency": "FCFA"
+    }
+  ],
+  "users": [
+    {
+      "id": "user-001",
+      "name": "Emmanuel",
+      "email": "emmanuel@example.com",
+      "createdAt": "2025-12-19T09:00:00Z",
+      "games": [
+        "game-001",
+        "game-digital"
+      ]
+    }
+  ]
+}
