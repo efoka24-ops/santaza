@@ -8,7 +8,12 @@ export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:3000/api'
+  // En production, utiliser la même origine. En dev, utiliser VITE_API_URL
+  const API_URL = import.meta.env.VITE_API_URL || (
+    typeof window !== 'undefined' && window.location.origin
+      ? `${window.location.origin}/api`
+      : 'http://127.0.0.1:3000/api'
+  )
 
   // Vérifier le token au chargement
   useEffect(() => {

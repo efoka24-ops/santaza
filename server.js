@@ -20,7 +20,24 @@ console.log(`📁 DATA_FILE: ${DATA_FILE}`)
 console.log(`🌐 NODE_ENV: ${process.env.NODE_ENV}`)
 
 // Middleware
-app.use(cors())
+app.use(cors({
+  origin: function (origin, callback) {
+    // Autoriser les requêtes sans origin (comme les requêtes mobiles)
+    if (!origin) return callback(null, true)
+    
+    // En production, autoriser Render
+    if (process.env.NODE_ENV === 'production') {
+      // Autoriser toutes les requêtes en production (c'est sûr car c'est la même app)
+      return callback(null, true)
+    }
+    
+    // En développement, être permissif
+    callback(null, true)
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
 app.use(express.json())
 app.use(express.urlencoded({ limit: '50mb', extended: true }))
 
