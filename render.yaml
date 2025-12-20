@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: santaza-api
+    runtime: node
+    dir: ./backend
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: CORS_ORIGIN
+        value: https://santaza-frontend.onrender.com
