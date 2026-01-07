@@ -11,6 +11,69 @@
       "drawPerformedAt": null,
       "budget": 150000,
       "currency": "FCFA"
+    },
+    {
+      "id": "game-1767775944618",
+      "code": "UAEJ3H",
+      "name": "Noel factory",
+      "creator": "efoka24@gmail.com",
+      "createdAt": "2026-01-07T08:52:24.629Z",
+      "participants": [
+        {
+          "id": "p-1767775992233",
+          "name": "FOKAaa",
+          "email": "efoka24@gmail.com",
+          "accessCode": "KNJ8UH2O",
+          "joinedAt": "2026-01-07T08:53:12.234Z",
+          "hasWishlist": true,
+          "wishlistItems": [
+            {
+              "id": 1,
+              "name": "velo",
+              "price": "1000"
+            },
+            {
+              "id": 2,
+              "name": "pagne",
+              "price": "5000"
+            },
+            {
+              "id": 3,
+              "name": "bible",
+              "price": "1000"
+            }
+          ]
+        },
+        {
+          "id": "p-1767776054254",
+          "name": "FOKA",
+          "email": "efoka24@gmail.com",
+          "accessCode": "TLPEI6D1",
+          "joinedAt": "2026-01-07T08:54:14.254Z",
+          "hasWishlist": true,
+          "wishlistItems": [
+            {
+              "id": 1,
+              "name": "bree",
+              "price": "5000"
+            },
+            {
+              "id": 2,
+              "name": "breee",
+              "price": "5000"
+            },
+            {
+              "id": 3,
+              "name": "bree",
+              "price": "5000"
+            }
+          ]
+        }
+      ],
+      "draws": {},
+      "drawPerformedAt": null,
+      "budget": 10000,
+      "currency": "FCFA"
     }
   ],
   "users": [
