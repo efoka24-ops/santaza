@@ -20,7 +20,27 @@ console.log(`📁 DATA_FILE: ${DATA_FILE}`)
 
 // Middleware
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173'
+  origin: function (origin, callback) {
+    // Autoriser les requêtes sans origin
+    if (!origin) return callback(null, true)
+    
+    // Whitelist d'origins autorisées
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'http://127.0.0.1:5173',
+      'https://santaza.vercel.app',
+      'https://www.santaza.vercel.app'
+    ]
+    
+    if (allowedOrigins.includes(origin) || process.env.NODE_ENV !== 'production') {
+      return callback(null, true)
+    }
+    
+    callback(new Error('Not allowed by CORS'))
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }))
 app.use(express.json())
 app.use(express.urlencoded({ limit: '50mb', extended: true }))
