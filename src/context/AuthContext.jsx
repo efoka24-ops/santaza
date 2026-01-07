@@ -11,9 +11,9 @@ export function AuthProvider({ children }) {
   // En production, utiliser le backend Vercel. En dev, utiliser VITE_API_URL
   let API_URL
   if (typeof window !== 'undefined') {
-    // Production: santaza.vercel.app -> backend.santaza.vercel.app
+    // Production: santaza.vercel.app -> santaza-8b1t.vercel.app
     if (window.location.hostname === 'santaza.vercel.app' || window.location.hostname === 'www.santaza.vercel.app') {
-      API_URL = 'https://backend.santaza.vercel.app/api'
+      API_URL = 'https://santaza-8b1t.vercel.app/api'
     } else if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
       // Development
       API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:3000/api'
