@@ -8,12 +8,22 @@ export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
-  // En production, utiliser la même origine. En dev, utiliser VITE_API_URL
-  const API_URL = import.meta.env.VITE_API_URL || (
-    typeof window !== 'undefined' && window.location.origin
-      ? `${window.location.origin}/api`
-      : 'http://127.0.0.1:3000/api'
-  )
+  // En production, utiliser le backend Vercel. En dev, utiliser VITE_API_URL
+  let API_URL
+  if (typeof window !== 'undefined') {
+    // Production: santaza.vercel.app -> backend.santaza.vercel.app
+    if (window.location.hostname === 'santaza.vercel.app' || window.location.hostname === 'www.santaza.vercel.app') {
+      API_URL = 'https://backend.santaza.vercel.app/api'
+    } else if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      // Development
+      API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:3000/api'
+    } else {
+      // Fallback
+      API_URL = import.meta.env.VITE_API_URL || `${window.location.origin}/api`
+    }
+  } else {
+    API_URL = 'http://127.0.0.1:3000/api'
+  }
 
   // Vérifier le token au chargement
   useEffect(() => {
