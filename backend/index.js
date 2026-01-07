@@ -361,20 +361,26 @@ app.use((err, req, res, next) => {
 })
 
 // ==================== START SERVER ====================
-const server = app.listen(PORT, '127.0.0.1', () => {
-  console.log(`✅ Server running on http://127.0.0.1:${PORT}`)
-  console.log(`📁 Data file: ${DATA_FILE}`)
-  console.log(`📡 API endpoints: /api/games, /api/health`)
-})
+// Export app for Vercel serverless and local development
+export default app
 
-server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    console.error(`❌ Port ${PORT} est déjà utilisé!`)
-    process.exit(1)
-  }
-  throw err
-})
+// Start server locally (only when not on Vercel)
+if (process.env.VERCEL !== '1') {
+  const server = app.listen(PORT, '127.0.0.1', () => {
+    console.log(`✅ Server running on http://127.0.0.1:${PORT}`)
+    console.log(`📁 Data file: ${DATA_FILE}`)
+    console.log(`📡 API endpoints: /api/games, /api/health`)
+  })
 
-server.on('error', (err) => {
-  console.error('❌ Server error:', err)
-})
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`❌ Port ${PORT} est déjà utilisé!`)
+      process.exit(1)
+    }
+    throw err
+  })
+
+  server.on('error', (err) => {
+    console.error('❌ Server error:', err)
+  })
+}
